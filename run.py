@@ -67,7 +67,7 @@ if __name__ == "__main__":
     # use json.loads(_.text) here
     _ = s.post(LOGIN_AUTH_URL, data=login_data, allow_redirects=False)
 
-    ### 2. Jankenpo
+    ### 2. Janken
     r = s.get(JANKEN_URL)
     preg = re.compile(r'/game/bemani/bjm2020/janken/exe.html\?form_type=[0-2]&chara_id=[0-9]&token_val=[0-9a-f]{16,32}')
     janken_urls = list(map(lambda url: urllib.parse.urljoin(DOMAIN, url), preg.findall(r.text)))

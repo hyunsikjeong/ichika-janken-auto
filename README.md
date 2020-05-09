@@ -26,6 +26,6 @@ Open `logindata.json` and write your ID and password.
 }
 ```
 
-Then run `run.py` to Jankenpo!
+Then run `run.py` to Janken!
 
 You can use this code with a scheduler like [cron](https://en.wikipedia.org/wiki/Cron) to do janken automatically everyday.
