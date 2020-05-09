@@ -7,7 +7,13 @@
 
 ## How to use
 
-First, copy `logindata.example.json` to `logindata.json`.
+First, clone the repository.
+```shell
+git clone https://github.com/jhs7jhs/ichika-janken-auto.git
+```
+or you can downlod the repository via [https://github.com/jhs7jhs/ichika-janken-auto/archive/master.zip].
+
+Copy `logindata.example.json` to `logindata.json`.
 ```shell
 cp logindata.example.json logindata.json
 ```
@@ -21,4 +27,5 @@ Open `logindata.json` and write your ID and password.
 ```
 
 Then run `run.py` to Jankenpo!
+
 You can use this code with a scheduler like [cron](https://en.wikipedia.org/wiki/Cron) to do janken automatically everyday.
