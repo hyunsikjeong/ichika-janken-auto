@@ -7,11 +7,10 @@
 
 ## How to use
 
-First, clone the repository.
+First, clone the repository. You can also download the repository via https://github.com/jhs7jhs/ichika-janken-auto/archive/master.zip.
 ```shell
 git clone https://github.com/jhs7jhs/ichika-janken-auto.git
 ```
-or you can downlod the repository via [https://github.com/jhs7jhs/ichika-janken-auto/archive/master.zip].
 
 Copy `logindata.example.json` to `logindata.json`.
 ```shell
@@ -28,4 +27,4 @@ Open `logindata.json` and write your ID and password.
 
 Then run `run.py` to Janken!
 
-You can use this code with a scheduler like [cron](https://en.wikipedia.org/wiki/Cron) to do janken automatically everyday.
+You can use this code with a scheduler like [cron](https://en.wikipedia.org/wiki/Cron) or [Windows Task Scheduler](https://en.wikipedia.org/wiki/Windows_Task_Scheduler) to do janken automatically everyday.
