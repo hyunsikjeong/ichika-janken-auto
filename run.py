@@ -5,6 +5,7 @@ import json
 import random
 import re
 import requests
+import sys
 import urllib.parse
 
 
@@ -76,5 +77,7 @@ if __name__ == "__main__":
         choice = random.choice(janken_urls)
         _ = s.get(choice)
         print("Done!")
+        exit(0)
     else:
-        print("Already done, or an error occured")
+        print("Already done, or an error occured", file=sys.stderr)
+        exit(1)
