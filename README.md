@@ -40,7 +40,7 @@ You can use this code to do janken automatically everyday, with a scheduler like
 Don't forget to use `cd` command before running the code.
 The code uses local path: `captcha.json` and `logindata.json`, so you must run the code in the path which those files are in.
 ```
-1 15 * * * cd /your/path/to/ichika-janken-auto && ./run.py
+1 10,15,20 * * * cd /your/path/to/ichika-janken-auto && ./run.py
 ```
 
 ### Windows Task Scheduler
