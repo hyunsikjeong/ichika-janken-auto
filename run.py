@@ -56,7 +56,8 @@ if __name__ == "__main__":
     captcha_data = json.loads(r.text)['data']
     captcha = get_captcha_result(captcha_data)
 
-    login_data = json.load(open('logindata.json', 'r'))
+    file_name = sys.argv[1] if len(sys.argv) > 1 else 'logindata.json'
+    login_data = json.load(open(file_name, 'r'))
     login_data = {
         **login_data,
         'otp': '',

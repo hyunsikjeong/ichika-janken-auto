@@ -27,6 +27,19 @@ Open `logindata.json` and write your ID and password.
 ```
 
 Then run `run.py` to Janken!
+```shell
+./run.py
+# or
+python3 run.py
+```
+
+You can also run the code with a json file of which name is not `logindata.json`.
+```shell
+# If the file name is another_logindata.json, then
+./run.py another_logindata.json
+# or
+python3 run.py another_logindata.json
+```
 
 ## How to set a schedule
 
