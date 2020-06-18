@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- [Python3](https://www.python.org/)
+- [Python3](https://www.python.org/)>=3.6
 - [requests](https://requests.readthedocs.io/en/master/)
 
 ## How to use
