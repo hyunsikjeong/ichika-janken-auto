@@ -46,10 +46,7 @@ def get_captcha_result(captcha_data):
     return f'k_{kcsess}_{keys[0]}_{keys[1]}_{keys[2]}_{keys[3]}_{keys[4]}'
 
 
-if __name__ == "__main__":
-    ### 1. Login
-    s = requests.Session()
-
+def try_login(s):
     _ = s.get(LOGIN_URL)
     r = s.get(CAPTCHA_URL)
 
@@ -65,9 +62,21 @@ if __name__ == "__main__":
         'captcha': captcha
     }
 
-    # If you want to check whether login was successful or not, 
-    # use json.loads(_.text) here
-    _ = s.post(LOGIN_AUTH_URL, data=login_data, allow_redirects=False)
+    r = s.post(LOGIN_AUTH_URL, data=login_data, allow_redirects=False)
+    login_result = json.loads(r.text)
+    fail_code, href = login_result["fail_code"], login_result["href"]
+
+    if fail_code != 0 or href != "https://p.eagate.573.jp/gate/p/login_complete.html":
+        return False
+    return True
+
+
+if __name__ == "__main__":
+    ### 1. Login
+    s = requests.Session()
+
+    while not try_login(s):
+        pass
 
     ### 2. Janken
     r = s.get(JANKEN_URL)
