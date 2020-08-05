@@ -15,6 +15,8 @@ LOGIN_AUTH_URL = urllib.parse.urljoin(DOMAIN, 'gate/p/common/login/api/login_aut
 LOGIN_RESRV_URL = urllib.parse.urljoin(DOMAIN, 'gate/p/login_complete.html')
 CAPTCHA_URL = urllib.parse.urljoin(DOMAIN, 'gate/p/common/login/api/kcaptcha_generate.html')
 JANKEN_URL = urllib.parse.urljoin(DOMAIN, 'game/bemani/bjm2020/janken/index.html')
+CARD_URL = urllib.parse.urljoin(DOMAIN, 'game/bemani/wbr2020/01/card.html')
+CARD_SUBMIT_URL = urllib.parse.urljoin(DOMAIN, 'game/bemani/wbr2020/01/card_save.html')
 
 
 def get_picture_md5(url):
@@ -71,14 +73,7 @@ def try_login(s):
     return True
 
 
-if __name__ == "__main__":
-    ### 1. Login
-    s = requests.Session()
-
-    while not try_login(s):
-        pass
-
-    ### 2. Janken
+def janken(s):
     r = s.get(JANKEN_URL)
     preg = re.compile(r'/game/bemani/bjm2020/janken/exe.html\?form_type=[0-2]&chara_id=[0-9]&token_val=[0-9a-f]{16,32}')
     janken_urls = list(map(lambda url: urllib.parse.urljoin(DOMAIN, url), preg.findall(r.text)))
@@ -86,8 +81,47 @@ if __name__ == "__main__":
     if janken_urls:
         choice = random.choice(janken_urls)
         _ = s.get(choice)
-        print("Done!")
+        print("[Janken] Done!")
+        return True
+    else:
+        print("[Janken] Already done, or an error occured", file=sys.stderr)
+        return False
+
+
+def card(s):
+    r = s.get(CARD_URL)
+    preg = re.compile(r'<input id="id_initial_token" type="hidden" value="([0-9a-f]{20,32})">')
+    tokens = list(preg.findall(r.text))
+
+    if len(tokens) != 1:
+        print("[Card] Too many tokens are found")
+        return False
+
+    card_data = {
+        "c_type": 0,
+        "c_id": str(random.randint(0, 2)),
+        "t_id": tokens[0]
+    }
+
+    _ = s.post(CARD_SUBMIT_URL, data=card_data)
+    print("[Card] Done!")
+    return True
+
+
+if __name__ == "__main__":
+    # 1. Login
+    s = requests.Session()
+
+    while not try_login(s):
+        pass
+
+    # 2. Janken
+    janken_result = janken(s)
+
+    # 3. Card
+    card_result = card(s)
+
+    if janken_result and card_result:
         exit(0)
     else:
-        print("Already done, or an error occured", file=sys.stderr)
         exit(1)
