@@ -1,5 +1,13 @@
 # ichika-janken-auto
 
+NOTICE: Now supports 毎週！いちかの超BEMANIラッシュ2020
+
+## Supporting
+
+- [いちかのBEMANI超じゃんけん大会2020](https://p.eagate.573.jp/game/bemani/bjm2020/index.html)
+- [毎週！いちかの超BEMANIラッシュ2020](https://p.eagate.573.jp/game/bemani/wbr2020/index.html)
+  - Nono's card game
+
 ## Requirements
 
 - [Python3](https://www.python.org/)>=3.6
@@ -43,7 +51,7 @@ python3 run.py another_logindata.json
 
 ## How to set a schedule
 
-You can use this code to do janken automatically everyday, with a scheduler like:
+You can use this code everyday with a scheduler like:
 
 - [cron](https://en.wikipedia.org/wiki/Cron)
 - [Windows Task Scheduler](https://en.wikipedia.org/wiki/Windows_Task_Scheduler)
